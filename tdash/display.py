@@ -87,7 +87,7 @@ def screen_length_to_bytes_count(string, screen_length_limit, encoding):
     for unicode_char in string:
         screen_length += screen_len(unicode_char)
         char_bytes_count = len(unicode_char.encode(encoding))
-        bytes_count += char_bytes_count
+        bytes_count += char_bytes_count 
         if screen_length > screen_length_limit:
             bytes_count -= char_bytes_count
             break
@@ -151,7 +151,22 @@ class Display(object):
     def add_aligned_string(self, s, y_align="top", x_align="left",
                            y_offeset=0, x_offset=0, style=None,
                            fill=False, fill_char=" ", fill_style=None):
-        pass
+        dis_len = screen_len(s)
+
+        pos_x = self.get_pos_x(x_align, x_offset, dis_len)
+        pos_y = self.get_pos_y(y_align, y_offset)
+
+        self.add_string(s, pos_y, pos_x, style)
+
+        if fill:
+            if fill_style is None:
+                fill_style = style
+            self.add_filling(fill_char, pos_y, 0, pos_x, fill_style)
+            self.add_filling(fill_char, pos_y, pos_x +
+                             dis_len, self.WIDTH, fill_style)
+
+        return pos_y, pos_x
+
 
     # ============================================================ #
     # Fundamental
@@ -206,8 +221,6 @@ class Display(object):
 
     def add_center_text(self, text):
         pass
-
-
 
 
 class Popup(object):
