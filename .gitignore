@@ -1,4 +1,5 @@
 node_modules
+<<<<<<< HEAD
 .tern-port
 .DS_Store
 build
@@ -12,3 +13,5 @@ GTAGS
 *#
 tags
 *~
+=======
+>>>>>>> a78aeef9d0beb44b500a6b3ee57b0b6c6976ebc7
