@@ -1,20 +1,19 @@
 'use strict';
 
-var fs = require('fs'),
-    path = require('path');
+import * as fs from 'fs';
+import * as path from 'path';
 
-let util = require('../lib/util');
+import * as util from '../lib/util';
 
 
-module.exports = {
+let parse = (version) => {
+    let docsetPath = path.resolve('../docset/nodejs/', version + '.json');
+    util.loadFile(docsetPath, (err, docsetData) => {
+        if (err) {
 
-    parse: (version) => {
-        let docsetPath = path.resolve('../docset/nodejs/', version + '.json');
-        util.loadFile(docsetPath, (err, docsetData) => {
-            if (err) {
-                
-            }
-            let docsetJson = JSON.parse(docsetData);
-        })
-    }
+        }
+        let docsetJson = JSON.parse(docsetData);
+    })
 }
+
+export default parse; 
