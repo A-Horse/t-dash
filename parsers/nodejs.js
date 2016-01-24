@@ -7,14 +7,21 @@ import * as util from '../lib/util';
 
 
 let parse = (version) => {
-    let docsetPath = path.resolve('../docset/nodejs/', version + '.json');
+    let docsetPath = path.resolve('docset/nodejs/', version + '.json');
     util.loadFile(docsetPath, (err, docsetData) => {
         if (err) {
-            console.log('..');
+            
         }
+
         let docsetJson = JSON.parse(docsetData);
-        console.log(docsetData);
+        Object.keys(docsetJson).map((k) => {
+            Object.keys(docsetJson[k]).map(function(l){
+                console.log(l);
+            });
+        });
     });
 };
+
+parse('v5.3.10');
 
 export default parse;
